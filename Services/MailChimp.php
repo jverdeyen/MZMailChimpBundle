@@ -35,7 +35,7 @@ class MailChimp
         $this->listId = $listId;
 
         $key = preg_split("/-/", $this->apiKey);
-        
+
         if($ssl) {
             $this->dataCenter ='https://' . $key[1] . '.api.mailchimp.com/';
         }else {
@@ -76,7 +76,7 @@ class MailChimp
     {
         return $this->listId;
     }
-    
+
     /**
      * get mailing list id
      *
@@ -98,6 +98,16 @@ class MailChimp
     }
 
     /**
+     * Get Lists Methods
+     *
+     * @return Methods\MCLists
+     */
+    public function getLists()
+    {
+        return new Methods\MCLists($this->apiKey, $this->listId, $this->dataCenter);
+    }
+
+    /**
      * Get List Methods
      *
      * @return Methods\MCCampaign
@@ -116,7 +126,7 @@ class MailChimp
     {
         return new Methods\MCExport($this->apiKey, $this->listId, $this->dataCenter);
     }
-    
+
     /**
      * Get Ecommerce Methods
      *
